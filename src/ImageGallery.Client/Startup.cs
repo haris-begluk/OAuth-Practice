@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 using System;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace ImageGallery.Client
 {
@@ -17,6 +19,7 @@ namespace ImageGallery.Client
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); //Keeping the original claim types/User claims  original type
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -46,6 +49,11 @@ namespace ImageGallery.Client
                 //options.UsePkce = false;
                 //options.CallbackPath = new Microsoft.AspNetCore.Http.PathString("...");
                 //options.SignedOutCallbackPath("");
+                //options.ClaimActions.Remove("nbf");//keeps claim Manipulation claims collection
+                options.ClaimActions.DeleteClaim("sid");//Manipulation claims collection
+                options.ClaimActions.DeleteClaim("idp");//Manipulation claims collection
+                options.ClaimActions.DeleteClaim("s_hash");//Manipulation claims collection
+                options.ClaimActions.DeleteClaim("auth_time");//Manipulation claims collection
                 options.Scope.Add("openid");
                 options.Scope.Add("profile");
                 options.SaveTokens = true;
