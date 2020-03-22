@@ -23,7 +23,7 @@ namespace Hades.OAuth
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
             {
-                    new ApiResource("imagegalleryapi", "Image Gallery API")
+                    new ApiResource("imagegalleryapi", "Image Gallery API", new List<string>{ "role" })
             };
 
         public static IEnumerable<Client> Clients =>
