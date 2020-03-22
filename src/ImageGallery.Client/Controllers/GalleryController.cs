@@ -56,7 +56,7 @@ namespace ImageGallery.Client.Controllers
             throw new Exception("Problem accessing the API");
 
         }
-
+        [Authorize(Roles = "PayingUser")]
         public async Task<IActionResult> EditImage(Guid id)
         {
 
@@ -145,6 +145,7 @@ namespace ImageGallery.Client.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "PayingUser")]
         public async Task<IActionResult> AddImage(AddImageViewModel addImageViewModel)
         {
             if (!ModelState.IsValid)
