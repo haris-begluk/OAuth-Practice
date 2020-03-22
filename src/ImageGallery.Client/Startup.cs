@@ -49,13 +49,13 @@ namespace ImageGallery.Client
                 //options.UsePkce = false;
                 //options.CallbackPath = new Microsoft.AspNetCore.Http.PathString("...");
                 //options.SignedOutCallbackPath("");
-                //options.ClaimActions.Remove("nbf");//keeps claim Manipulation claims collection
+                //options.ClaimActions.DeleteClaim("address");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("sid");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("idp");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("s_hash");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("auth_time");//Manipulation claims collection
-                options.Scope.Add("openid");
-                options.Scope.Add("profile");
+
+                options.Scope.Add("address");
                 options.SaveTokens = true;
                 options.ClientSecret = "secret";
                 options.GetClaimsFromUserInfoEndpoint = true;
