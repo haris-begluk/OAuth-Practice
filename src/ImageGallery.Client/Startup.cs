@@ -60,8 +60,9 @@ namespace ImageGallery.Client
                 options.ClaimActions.DeleteClaim("idp");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("s_hash");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("auth_time");//Manipulation claims collection
-
+                options.ClaimActions.MapUniqueJsonKey("role", "role");//including roles in token
                 options.Scope.Add("address");
+                options.Scope.Add("roles");
                 options.SaveTokens = true;
                 options.ClientSecret = "secret";
                 options.GetClaimsFromUserInfoEndpoint = true;

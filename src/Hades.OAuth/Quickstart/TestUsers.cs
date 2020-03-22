@@ -17,7 +17,8 @@ namespace Hades.OAuth
                 Claims = new List<Claim>
                 {
                     new Claim ("given_name", "Haris"),
-                    new Claim ( "family_name", "Neko")
+                    new Claim ( "family_name", "Neko"),
+                    new Claim("role", "FreeUser")
                 }
             },
             new TestUser{SubjectId = "3F41DC87-E8DE-42EE-AC8D-355E4D3E1A2D", Username = "Lejla", Password = "lejla",
@@ -25,7 +26,9 @@ namespace Hades.OAuth
                 {
                     new Claim ( "given_name", "Lejla"),
                     new Claim ( "family_name", "Neko"),
-                    new Claim ( "address", "Covid 19 street")
+                    new Claim ( "address", "Covid 19 street"),
+                    new Claim("role", "PayingUser")
+
                 }
             }
         };

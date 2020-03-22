@@ -15,7 +15,8 @@ namespace Hades.OAuth
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
-                new IdentityResources.Address()
+                new IdentityResources.Address(),
+                new IdentityResource("roles", "Your role(s)", new List<string>(){ "role"})
 
             };
 
@@ -34,7 +35,8 @@ namespace Hades.OAuth
             AllowedScopes = {
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile,
-                IdentityServerConstants.StandardScopes.Address
+                IdentityServerConstants.StandardScopes.Address,
+                "roles"
                 },
             ClientSecrets = { new Secret("secret".Sha256()) }
             } };
