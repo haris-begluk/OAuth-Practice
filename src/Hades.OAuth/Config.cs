@@ -22,7 +22,9 @@ namespace Hades.OAuth
 
         public static IEnumerable<ApiResource> Apis =>
             new ApiResource[]
-            { };
+            {
+                    new ApiResource("imagegalleryapi", "Image Gallery API")
+            };
 
         public static IEnumerable<Client> Clients =>
             new Client[]
@@ -36,7 +38,8 @@ namespace Hades.OAuth
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile,
                 IdentityServerConstants.StandardScopes.Address,
-                "roles"
+                "roles",
+                "imagegalleryapi"
                 },
             ClientSecrets = { new Secret("secret".Sha256()) }
             } };
