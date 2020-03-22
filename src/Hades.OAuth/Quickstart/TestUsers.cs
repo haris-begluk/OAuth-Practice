@@ -16,14 +16,14 @@ namespace Hades.OAuth
             new TestUser{SubjectId = "2645BD94-3624-43FC-B21F-1209D730FC71", Username = "Haris", Password = "haris",
                 Claims = new List<Claim>
                 {
-                    new Claim ("given_Name", "Haris"),
+                    new Claim ("given_name", "Haris"),
                     new Claim ( "familiy_name", "Neko")
                 }
             },
-            new TestUser{SubjectId = "88421113", Username = "bob", Password = "bob",
+            new TestUser{SubjectId = "3F41DC87-E8DE-42EE-AC8D-355E4D3E1A2D", Username = "Lejla", Password = "lejla",
                 Claims = new List<Claim>
                 {
-                    new Claim ( "3F41DC87-E8DE-42EE-AC8D-355E4D3E1A2D", "Lejla"),
+                    new Claim ( "given_name", "Lejla"),
                     new Claim ( "familiy_name", "Neko")
                 }
             }
