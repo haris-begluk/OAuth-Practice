@@ -28,6 +28,7 @@ namespace Hades.OAuth
             ClientId = "imagegalleryclient",
             AllowedGrantTypes = GrantTypes.Code,
             RedirectUris = new List<string>(){ "https://localhost:44389/signin-oidc" },
+            PostLogoutRedirectUris = new List<string>(){ "https://localhost:44389/signout-callback-oidc" },
             AllowedScopes = {
                 IdentityServerConstants.StandardScopes.OpenId,
                 IdentityServerConstants.StandardScopes.Profile
