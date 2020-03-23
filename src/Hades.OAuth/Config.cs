@@ -26,6 +26,7 @@ namespace Hades.OAuth
             new ApiResource[]
             {
                     new ApiResource("imagegalleryapi", "Image Gallery API", new List<string>{ "role" })
+                    { ApiSecrets = { new Secret("apisecret".Sha256()) } }
             };
 
         public static IEnumerable<Client> Clients =>
@@ -33,6 +34,7 @@ namespace Hades.OAuth
             { new Client{
             //IdentityTokenLifetime
             //AuthorizationCodeLifetime
+            AccessTokenType = AccessTokenType.Reference,
             AccessTokenLifetime =20,
             AllowOfflineAccess = true,
             UpdateAccessTokenClaimsOnRefresh = true,
