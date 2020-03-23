@@ -77,6 +77,7 @@ namespace ImageGallery.Client
                 options.Scope.Add("imagegalleryapi");
                 options.Scope.Add("subsctiptionlevel");
                 options.Scope.Add("country");
+                options.Scope.Add("offline_access");
                 //options.UsePkce = false;
                 //options.CallbackPath = new Microsoft.AspNetCore.Http.PathString("...");
                 //options.SignedOutCallbackPath("");
