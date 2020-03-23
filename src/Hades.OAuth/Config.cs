@@ -16,7 +16,9 @@ namespace Hades.OAuth
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
                 new IdentityResources.Address(),
-                new IdentityResource("roles", "Your role(s)", new List<string>(){ "role"})
+                new IdentityResource("roles", "Your role(s)", new List<string>(){ "role"}),
+                new IdentityResource("country", "The country zou're living in", new List<string>(){ "country"}) ,
+                new IdentityResource("subsctiptionlevel", "Your subscription level", new List<string>(){ "subsctiptionlevel"})
 
             };
 
@@ -39,7 +41,9 @@ namespace Hades.OAuth
                 IdentityServerConstants.StandardScopes.Profile,
                 IdentityServerConstants.StandardScopes.Address,
                 "roles",
-                "imagegalleryapi"
+                "imagegalleryapi",
+                "country",
+                "subsctiptionlevel"
                 },
             ClientSecrets = { new Secret("secret".Sha256()) }
             } };

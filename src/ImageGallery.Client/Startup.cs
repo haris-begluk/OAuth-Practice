@@ -30,6 +30,18 @@ namespace ImageGallery.Client
         {
             services.AddControllersWithViews()
                  .AddJsonOptions(opts => opts.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CanOrderFrame",
+                    policyBuilder =>
+                    {
+                        policyBuilder.RequireAuthenticatedUser();
+                        policyBuilder.RequireClaim("country", "be");
+                        policyBuilder.RequireClaim("subscriptionLevel", "PayingUser");
+                    });
+            });
+
             services.AddHttpContextAccessor();
             services.AddTransient<BearerTokenHandler>();
             // create an HttpClient used for accessing the API
@@ -60,6 +72,11 @@ namespace ImageGallery.Client
                 options.Authority = "https://localhost:44371/";
                 options.ClientId = "imagegalleryclient";
                 options.ResponseType = "code";
+                options.Scope.Add("address");
+                options.Scope.Add("roles");
+                options.Scope.Add("imagegalleryapi");
+                options.Scope.Add("subsctiptionlevel");
+                options.Scope.Add("country");
                 //options.UsePkce = false;
                 //options.CallbackPath = new Microsoft.AspNetCore.Http.PathString("...");
                 //options.SignedOutCallbackPath("");
@@ -69,9 +86,8 @@ namespace ImageGallery.Client
                 options.ClaimActions.DeleteClaim("s_hash");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("auth_time");//Manipulation claims collection
                 options.ClaimActions.MapUniqueJsonKey("role", "role");//including roles in token
-                options.Scope.Add("address");
-                options.Scope.Add("roles");
-                options.Scope.Add("imagegalleryapi");
+                options.ClaimActions.MapUniqueJsonKey("subsctiptionlevel", "subsctiptionlevel");//including roles in token
+                options.ClaimActions.MapUniqueJsonKey("country", "country");//including roles in token
                 options.SaveTokens = true;
                 options.ClientSecret = "secret";
                 options.GetClaimsFromUserInfoEndpoint = true;
