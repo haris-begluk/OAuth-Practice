@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Hades.OAuth
 {
@@ -30,7 +32,7 @@ namespace Hades.OAuth
                 .AddTestUsers(TestUsers.Users);
 
             // not recommended for production - you need to store your key material somewhere secure
-            builder.AddDeveloperSigningCredential();
+            builder.AddSigningCredential(LoadCertificateFromStore());
         }
 
         public void Configure(IApplicationBuilder app)
@@ -52,6 +54,22 @@ namespace Hades.OAuth
             {
                 endpoints.MapDefaultControllerRoute();
             });
+        }
+        public X509Certificate2 LoadCertificateFromStore()
+        {
+            string thumbPrint = "7e17847fb616f135aec6d94808246617286997a7";
+
+            using (var store = new X509Store(StoreName.My, StoreLocation.LocalMachine))
+            {
+                store.Open(OpenFlags.ReadOnly);
+                var certCollection = store.Certificates.Find(X509FindType.FindByThumbprint,
+                    thumbPrint, true);
+                if (certCollection.Count == 0)
+                {
+                    throw new Exception("The specified certificate wasn't found.");
+                }
+                return certCollection[0];
+            }
         }
     }
 }
