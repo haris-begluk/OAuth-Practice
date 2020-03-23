@@ -32,15 +32,12 @@ namespace Hades.OAuth
         public static IEnumerable<Client> Clients =>
             new Client[]
             { new Client{
-            //IdentityTokenLifetime
-            //AuthorizationCodeLifetime
+
             AccessTokenType = AccessTokenType.Reference,
             AccessTokenLifetime =20,
             AllowOfflineAccess = true,
             UpdateAccessTokenClaimsOnRefresh = true,
-            //RefreshTokenExpiration //Sliding
-            //AbsoluteRefreshTokenLifetime
-                ClientName = "Image Gallery",
+            ClientName = "Image Gallery",
             ClientId = "imagegalleryclient",
             AllowedGrantTypes = GrantTypes.Code,
             RedirectUris = new List<string>(){ "https://localhost:44389/signin-oidc" },

@@ -78,10 +78,6 @@ namespace ImageGallery.Client
                 options.Scope.Add("subsctiptionlevel");
                 options.Scope.Add("country");
                 options.Scope.Add("offline_access");
-                //options.UsePkce = false;
-                //options.CallbackPath = new Microsoft.AspNetCore.Http.PathString("...");
-                //options.SignedOutCallbackPath("");
-                //options.ClaimActions.DeleteClaim("address");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("sid");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("idp");//Manipulation claims collection
                 options.ClaimActions.DeleteClaim("s_hash");//Manipulation claims collection
@@ -101,7 +97,7 @@ namespace ImageGallery.Client
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseStaticFiles();
